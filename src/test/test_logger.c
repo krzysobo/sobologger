@@ -86,5 +86,5 @@ int main(int argc, char **argv)
 
     printf("\ntest_logger testing has been finished...\n\n");
 
-    return 0;
+    return status;
 }
