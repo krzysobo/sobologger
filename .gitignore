@@ -56,3 +56,4 @@ dkms.conf
 logs
 bin/test
 bin/test_*
+__.SYMDEF\ SORTED
