@@ -1,22 +1,23 @@
-// Copyright (c) 2020-2021 Krzysztof Sobolewski <krzysztof.sobolewski@gmail.com>
+/*  
+*  Copyright (c) 2020-2021 Krzysztof Sobolewski <krzysztof.sobolewski@gmail.com>
+*  Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the "Software"), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
 
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+*  The above copyright notice and this permission notice shall be included in all
+*  copies or substantial portions of the Software.
 
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+*  SOFTWARE.
+*/
 
 
 #include <stdio.h>
@@ -31,8 +32,9 @@
 char logger_name[20];
 char logger_file_path[1024];
 
-// http://zetcode.com/articles/cdatetime/
-// %F: %Y-%m-%d, %T: %H:%M:%S
+/* http://zetcode.com/articles/cdatetime/
+* %F: %Y-%m-%d, %T: %H:%M:%S
+*/
 const char *time_format = "%F %T"; 
 
 
@@ -74,7 +76,7 @@ int write_to_log_file(char *text)
     fp = fopen(logger_file_path, "ab");
     res = fprintf(fp, "%s", text);
     fclose(fp);
-    // should be non-negative to be OK
+    /* should be non-negative to be OK */
     return (res >= 0)? 0:1;
 }
 
@@ -91,6 +93,7 @@ void logger(char *msg, int errorlevel, ...)
     char out_level_txt[10];
     char tmp_msg[16384];
     char out_msg[17000];
+    char formatted_time[20];
     
     va_list args;
     va_start(args, errorlevel);
@@ -131,7 +134,6 @@ void logger(char *msg, int errorlevel, ...)
             break;
     }
 
-    char formatted_time[20];
     get_formatted_local_time(formatted_time, sizeof(formatted_time), 
         time_format);
 
