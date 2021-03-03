@@ -20,6 +20,8 @@
 */
 
 
+#define _XOPEN_SOURCE 600  /* for fdopen in stdio.h */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
