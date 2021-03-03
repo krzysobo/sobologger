@@ -47,8 +47,8 @@ const char *time_format = "%F %T";
  */
 void setup_logger(char *name, char *file_path)
 {
-    bzero(logger_name, sizeof(logger_name));
-    bzero(logger_file_path, sizeof(logger_file_path));
+    memset(&logger_name, 0, sizeof(logger_name));
+    memset(&logger_file_path, 0, sizeof(logger_file_path));
     memcpy(logger_name, name, strlen(name));
     memcpy(logger_file_path, file_path, strlen(file_path));
 }
