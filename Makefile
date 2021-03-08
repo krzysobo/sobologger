@@ -13,12 +13,10 @@ AS                     := /usr/bin/as
 # can be set in the env. vars, ie. export TARGET_PATH='xxxxx'
 TARGET_PATH            ?= 'bin'
 
-# parent directory of /usr/local/share/soboutils
-SOBOUTILS_INCLUDE_PATH ?= '/usr/local/share'
-SOBOUTILS_LIB_PATH     ?= '/usr/local/lib/soboutils'
-
-SOBOLOGGER_INCLUDE_PATH ?= '/usr/local/share/sobologger'
-SOBOLOGGER_LIB_PATH     ?= '/usr/local/lib/sobologger'
+SOBO_COMMON_INCLUDE_PATH        ?= '/usr/local/share'
+SOBOUTILS_LIB_PATH              ?= '/usr/local/lib/soboutils'
+SOBOLOGGER_INSTALL_INCLUDE_PATH ?= '/usr/local/share/sobologger'
+SOBOLOGGER_LIB_PATH             ?= '/usr/local/lib/sobologger'
 
 .PHONY: clean
 
@@ -30,7 +28,7 @@ logger: src/logger.c
 	$(CC) $(CFLAGS) -fpic -o $(TARGET_PATH)/logger.o \
 	-c src/logger.c \
 	-I include \
-	-I $(SOBOUTILS_INCLUDE_PATH)
+	-I $(SOBO_COMMON_INCLUDE_PATH)
 
 	chmod 777 $(TARGET_PATH)/logger.o
 
@@ -53,15 +51,15 @@ testlogger: src/test/test_logger.c
 	src/test/test_logger.c \
 	$(TARGET_PATH)/libsobologger.a \
 	-I include \
-	-I $(SOBOUTILS_INCLUDE_PATH)
+	-I $(SOBO_COMMON_INCLUDE_PATH)
 
 
 install:
 	@echo "\nThis operation requires the SUDO access.\n"
 	sudo mkdir -p $(SOBOLOGGER_LIB_PATH)
-	sudo mkdir -p $(SOBOLOGGER_INCLUDE_PATH)
+	sudo mkdir -p $(SOBOLOGGER_INSTALL_INCLUDE_PATH)
 	sudo cp -rf $(TARGET_PATH)/libsobologger.a $(SOBOLOGGER_LIB_PATH)/
-	sudo cp -rf include/sobologger/* $(SOBOLOGGER_INCLUDE_PATH)/
+	sudo cp -rf include/sobologger/* $(SOBOLOGGER_INSTALL_INCLUDE_PATH)/
 
 clean:
 	rm -rf *.o
