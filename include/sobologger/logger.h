@@ -1,4 +1,4 @@
-/*  
+/*
 *  Copyright (c) 2020-2021 Krzysztof Sobolewski <krzysztof.sobolewski@gmail.com>
 *  Permission is hereby granted, free of charge, to any person obtaining a copy
 *  of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +37,3 @@ void remove_log_file_if_exists();
 #define LOG_NOTICE 5
 #define LOG_INFO 6
 #define LOG_DEBUG 7
-
-
-

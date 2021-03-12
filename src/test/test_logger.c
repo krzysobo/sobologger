@@ -1,4 +1,4 @@
-/*  
+/*
 *  Copyright (c) 2020-2021 Krzysztof Sobolewski <krzysztof.sobolewski@gmail.com>
 *  Permission is hereby granted, free of charge, to any person obtaining a copy
 *  of this software and associated documentation files (the "Software"), to deal
@@ -50,17 +50,17 @@ int main(int argc, char **argv)
     printf("\nChecking whether the log file is absent...");
     assert(!file_exists(log_path));
     printf("\n -- OK!");
-    
+
     /* writing test - writing */
     printf("\nWriting to log...\n");
     logger("Testing logger - first line.", LOG_INFO);
     logger("Testing logger - second line: %s-%d.", LOG_INFO, "A", 1);
-    
+
     /* writing test - checking if the file exists */
     printf("\nChecking whether the log file exists...");
     assert(file_exists(log_path));
     printf(" -- OK!\n");
-    
+
     /* writing test - checking if the file is not empty */
     printf("\nChecking whether the file is not empty...");
     assert(get_file_size(log_path) > 0);
